@@ -12,13 +12,12 @@ public class GamePanel extends JPanel {
 	
 	static Random randGenerator;
 	static Player player;
-	static Enemy enemy;
 	public static ArrayList<Enemy> enemies;
 	
 	public GamePanel() {
 		player = new Player();
 		enemies = new ArrayList<Enemy>();
-		enemy = new Enemy(40, 40);
+		//loadImage();
 		
 		randGenerator = new Random();
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
@@ -48,7 +47,6 @@ public class GamePanel extends JPanel {
 			enemy.tick();
 		}
 		
-		//loadImage();
 		if (x > GameFrame.WIDTH) {
 			x = 10;
 		}
