@@ -1,4 +1,4 @@
 Java-Teamwork-assignment
 ========================
 
-Java Game done by team "Dark Magenta"
+Java Game developed by team "Dark Magenta":
