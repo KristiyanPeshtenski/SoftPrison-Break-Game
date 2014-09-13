@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 
@@ -12,11 +13,12 @@ public class Player {
 		size = 30;
 	}
 	
-	public static void tick() {
+	public void tick() {
 		x += 1;
 	}
 	
-	public static void paint(Graphics g) {
+	public void paint(Graphics g) {
+		g.setColor(Color.RED);
 		g.fillRect(x, y, size, size);
 	}
 }
