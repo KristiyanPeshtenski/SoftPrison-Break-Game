@@ -5,14 +5,17 @@
 
 3. Move player/ Input handler - Drasho
 
-4. Enemies - Preslav
+4. Enemies - Preslav / Done
 
-4. Move enemies - Preslav
+4. Move enemies - Preslav / Done
 
 5. Missiles/ move -- Later
 
 6. Collision detector - Kristiyan ?
 
 // Pictures, background , Name of the game, original ideas (Veronika ? , Rumen) // bonuses
+
+// 7. Add different characters (Idea)
+// 8. Add different ammo (Idea)
 
 NOTE: Please leave comments in order for everyone to understand what you are doing ^^
