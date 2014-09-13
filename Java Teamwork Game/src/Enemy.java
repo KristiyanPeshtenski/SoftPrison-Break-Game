@@ -1,18 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
 
 
 public class Enemy {
 	private int x;
 	private int y;
 	private int size = 30;
-	private int fallingSpeed = 1;
-	private Random randGenerator;
+	private int fallingSpeed = 2;
 	
 	public Enemy(int x, int y) {
-		randGenerator = new Random();
 		this.x = x;
 		this.y = y;
 	}

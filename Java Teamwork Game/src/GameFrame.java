@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 
 
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame{
 
 	static final int WIDTH = 500;
