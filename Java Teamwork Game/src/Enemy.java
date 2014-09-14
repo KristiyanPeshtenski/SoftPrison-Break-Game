@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class Enemy {
 	private int x;
 	private int y;
-	private int size = 30;
+	private static int size = 30;
 	private int fallingSpeed = 2;
 	
 	public Enemy(int x, int y) {
@@ -15,7 +15,7 @@ public class Enemy {
 	}
 	
 	public void tick() {
-		y += fallingSpeed;
+		x -= fallingSpeed;
 	}
 	
 	public void paint(Graphics g) {
@@ -25,5 +25,9 @@ public class Enemy {
 	
 	public Rectangle getBounds() {
 		return new Rectangle(this.x, this.y, this.size, this.size);
+	}
+	
+	public static int getSize() {
+		return size;
 	}
 }

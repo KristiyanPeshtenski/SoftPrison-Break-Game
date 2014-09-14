@@ -11,7 +11,7 @@ public class GamePanel extends JPanel {
 	static int x = 10;
 	
 	static Random randGenerator;
-	static Player player;
+	Player player;
 	public static ArrayList<Enemy> enemies;
 	
 	public GamePanel() {
@@ -52,12 +52,13 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	// this is changed
 	public void generateEnemies() {
 		Enemy tempEnemy;
 		
 		do {
-			tempEnemy = new Enemy(10 + randGenerator.nextInt(GameFrame.WIDTH - 60), 
-					-110 + randGenerator.nextInt(100));
+			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(80), 
+					randGenerator.nextInt(GameFrame.HEIGHT - Enemy.getSize()));
 			
 		} while (avoidIntersection(tempEnemy));
 		
