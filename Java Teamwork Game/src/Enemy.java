@@ -24,7 +24,7 @@ public class Enemy {
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(this.x, this.y, this.size, this.size);
+		return new Rectangle(this.x, this.y, size, size);
 	}
 	
 	public static int getSize() {
