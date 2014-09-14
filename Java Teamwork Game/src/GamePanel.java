@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,16 +12,19 @@ public class GamePanel extends JPanel {
 	static int x = 10;
 	
 	static Random randGenerator;
-	Player player;
+	static Player player;
 	public static ArrayList<Enemy> enemies;
 	
 	public GamePanel() {
 		player = new Player();
 		enemies = new ArrayList<Enemy>();
 		//loadImage();
+		KeyListener input = new InputHandler();
+		addKeyListener(input);
 		
 		randGenerator = new Random();
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
+		setFocusable(true);
 	}
 	
 	public void paint(Graphics g) {
@@ -40,7 +44,6 @@ public class GamePanel extends JPanel {
 			generateEnemies();
 		}
 		
-		
 		player.tick();
 		
 		for (Enemy enemy : enemies) {
@@ -52,7 +55,6 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	// this is changed
 	public void generateEnemies() {
 		Enemy tempEnemy;
 		
