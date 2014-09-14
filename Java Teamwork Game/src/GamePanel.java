@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -60,11 +61,24 @@ public class GamePanel extends JPanel {
 		
 		do {
 			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(80), 
-					randGenerator.nextInt(GameFrame.HEIGHT - Enemy.getSize()));
+					randGenerator.nextInt(GameFrame.HEIGHT - Enemy.getSize() * 2));
 			
 		} while (avoidIntersection(tempEnemy));
 		
 		enemies.add(tempEnemy);
+		
+		checkEnemyOutOfBounds();
+		
+	}
+
+	private void checkEnemyOutOfBounds() {
+		for (int index = 0; index < enemies.size(); index++) {
+			if (enemies.get(index).getX() < 0) {
+				JOptionPane.showMessageDialog(this, "Your score",
+						"Game Over", JOptionPane.YES_NO_OPTION);
+				System.exit(0);
+			}
+		}
 		
 	}
 

@@ -25,10 +25,25 @@ public class Player {
 		x += velX;
 		y += velY;
 		
-		for (Missile missile : ammo) {
-			missile.tick();
+		for (int index = 0; index < ammo.size(); index++) {
+			ammo.get(index).tick();
+			checkMissileCollision(ammo.get(index));
 		}
 		
+		checkOutOfBounds();
+	}
+	
+	private void checkMissileCollision(Missile missile) {
+		for (int index = 0; index < GamePanel.enemies.size(); index++) {
+			if (GamePanel.enemies.get(index).getBounds().intersects(missile.getBounds())) {
+				GamePanel.enemies.remove(GamePanel.enemies.get(index));
+				ammo.remove(missile);
+			}
+		}
+		
+	}
+
+	private void checkOutOfBounds() {
 		if (x <= 0) {			
 			x = 0;			
 		}
@@ -42,7 +57,7 @@ public class Player {
 			y = 500 - 40 - size;
 		}
 	}
-	
+
 	public void paint(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(x, y, size, size);

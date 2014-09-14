@@ -30,4 +30,8 @@ public class Enemy {
 	public static int getSize() {
 		return size;
 	}
+	
+	public int getX() {
+		return x;
+	}
 }

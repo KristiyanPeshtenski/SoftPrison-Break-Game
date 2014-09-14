@@ -8,7 +8,7 @@ public class Missile {
 	private int x;
 	private int y;
 	private int size = 10;
-	private int speed = 3;
+	private int speed = 11;
 	
 	public Missile(int x, int y){
 		this.x = x;
@@ -24,7 +24,7 @@ public class Missile {
 		g.fillRect(x, y, size, size);
 	} 
 	
-	public Rectangle getBound(){
+	public Rectangle getBounds(){
 		return new Rectangle (this.x,this.y,this.size,this.size);
 	}
 	
