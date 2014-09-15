@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Toolkit;
+
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
@@ -17,6 +17,21 @@ public class GamePanel extends JPanel {
 	public static ArrayList<Enemy> enemies;
 	
 	public GamePanel() {
+		
+		// for future character selection
+		/*Object[] options = {"Nakov", "Deyan", "Angel"};
+		
+		int choice = JOptionPane.showOptionDialog(null,
+				"Choose your character", "Character selection", JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+		if (choice == 0) {
+			System.out.println("Nakov is selected");
+		} else if (choice == 1) {
+			System.out.println("Deyan is selected");
+		} else {
+			System.out.println("Angel is selected");
+		}*/
+		
 		player = new Player();
 		enemies = new ArrayList<Enemy>();
 		//loadImage();
@@ -30,7 +45,7 @@ public class GamePanel extends JPanel {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawImage(back, 0, 0, null);
+		
 		for (Enemy enemy : enemies) {
 			enemy.paint(g);
 		}
@@ -91,9 +106,9 @@ public class GamePanel extends JPanel {
 		return false;
 	}
 	
-	private static void loadImage() {
-		Image img = Toolkit.getDefaultToolkit().createImage("background.png");
-        //ImageIcon ii = new ImageIcon("res/joker.png");
-        //joker = ii.getImage();
-    }
+	/*private static void loadImage() {
+
+        ImageIcon ii = new ImageIcon("res/joker.png");
+        joker = ii.getImage();
+    }*/
 }
