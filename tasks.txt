@@ -1,7 +1,7 @@
 
-1. GameField - Done
+1. GameField - Preslav / Done
 
-2. Player - Drasho / DOne
+2. Player - Drasho / Done
 
 3. Move player/ Input handler - Drasho / Done
 
@@ -11,13 +11,18 @@
 
 5. Missiles/ move -- Kristiyan / Done
 
-6. Collision detector - Kristiyan
+6. Collision detector - Kristiyan / Done
 
-7.  Add score and adjust speed - ?
+7.  Add score and adjust speed - Kristiyan
 
-// Pictures, background , Name of the game, original ideas (Veronika ? , Rumen) // bonuses
+8. Character Images and ammo- Veronika / Done
 
-// Add different characters (Idea)
-// Add different ammo (Idea)
+9. Sound - ?
+
+10. Enemy images - ?
+
+11. Background - Rumen / Done
+
+12. Insert images and sound into the game - Preslav
 
 NOTE: Please leave comments in order for everyone to understand what you are doing ^^
