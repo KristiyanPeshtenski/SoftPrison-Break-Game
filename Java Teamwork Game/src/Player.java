@@ -50,11 +50,11 @@ public class Player {
 		if (y <= 0) {			
 			y = 0; 
 		}
-		if (x >= 500 - 15 - size) {
-			x = 500 - 15 - size;
+		if (x >= GameFrame.WIDTH - size - 15) {
+			x = GameFrame.WIDTH - size - 15;
 		}
-		if (y >= 500 - 40 - size) {
-			y = 500 - 40 - size;
+		if (y >= GameFrame.HEIGHT - size - 30) {
+			y = GameFrame.HEIGHT - size - 30;
 		}
 	}
 
