@@ -17,12 +17,18 @@
 
 8. Character Images and ammo- Veronika / Done
 
-9. Sound - ?
+9. Enemy images - Rumen / Done
 
-10. Enemy images - ?
+10. Background - Rumen / Done
 
-11. Background - Rumen / Done
+11. Insert images and sound into the game - Preslav / Done
 
-12. Insert images and sound into the game - Preslav
+12. Add Bonuses - Preslav
+
+13. Resize enemy image - Veronika
+
+14. Player - enemies Collision - Kristiyan
+
+15. Add Sound - ?
 
 NOTE: Please leave comments in order for everyone to understand what you are doing ^^
