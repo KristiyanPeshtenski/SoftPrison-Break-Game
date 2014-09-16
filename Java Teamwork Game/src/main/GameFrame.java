@@ -16,12 +16,12 @@ public class GameFrame extends JFrame{
 	
 	public GameFrame() {
 		this.setSize(WIDTH, HEIGHT);
+		this.setTitle("SoftPrison Break");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
 		game = new GamePanel();
-		
 		this.add(game);
 		
 		this.setVisible(true);
@@ -31,8 +31,8 @@ public class GameFrame extends JFrame{
 
 	private void gameLoop() {
 		while (true) {
-			repaint();
 			game.tick();
+			repaint();
 			
 			try {
 				Thread.sleep(50);

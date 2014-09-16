@@ -16,7 +16,7 @@ public class Player {
 	int shootDelay = 0;
 	
 	public int lives;
-	int speed = 10;
+	int speed = 12;
 	Image characterImage;
 	
 	static ArrayList<Bullet> ammo;
@@ -39,14 +39,25 @@ public class Player {
 		}
 		
 		for (int index = 0; index < ammo.size(); index++) {
-			ammo.get(index).tick();
-			checkbulletCollision(ammo.get(index));
+			checkBulletOutOfBounds(index);
 		}
+		
+		for (int index = 0; index < ammo.size(); index++) {
+			checkBulletCollision(ammo.get(index));
+		}
+		
 		
 		checkOutOfBounds();
 	}
+
+	private void checkBulletOutOfBounds(int index) {
+		ammo.get(index).tick();
+		if (ammo.get(index).getx() > GameFrame.WIDTH) {
+			ammo.remove(index);
+		}
+	}
 	
-	private void checkbulletCollision(Bullet bullet) {
+	private void checkBulletCollision(Bullet bullet) {
 		for (int index = 0; index < GamePanel.enemies.size(); index++) {
 			if (GamePanel.enemies.get(index).getBounds().intersects(bullet.getBounds())) {
 				GamePanel.enemies.remove(GamePanel.enemies.get(index));
@@ -86,7 +97,6 @@ public class Player {
 		
 		if (key == KeyEvent.VK_W ) {
 			velY = -speed;
-			
 		} else if (key == KeyEvent.VK_S) {
 			velY = speed;
 		} else if (key == KeyEvent.VK_A) {

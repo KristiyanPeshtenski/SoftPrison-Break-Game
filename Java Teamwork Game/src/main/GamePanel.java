@@ -33,7 +33,8 @@ public class GamePanel extends JPanel {
 	public static int choice;
 	
 	public GamePanel() {
-		
+		readHighScore();
+		loadBackground();
 		characterSelection();
 		
 		player = new Player();
@@ -43,26 +44,10 @@ public class GamePanel extends JPanel {
 		addKeyListener(input);
 		
 		score = 0;
-		readHighScore();
-		loadBackground();
 		
 		randGenerator = new Random();
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
 		setFocusable(true);
-	}
-
-	private void loadBackground() {
-		ImageIcon ii = new ImageIcon("res/background.png");
-		background = ii.getImage();
-		
-	}
-
-	private void characterSelection() {
-		Object[] options = {"Nakov", "Deyan", "Angel"};
-		
-		choice = JOptionPane.showOptionDialog(null,
-				"Choose your character", "Character selection", JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 	}
 	
 	public void paint(Graphics g) {
@@ -80,7 +65,7 @@ public class GamePanel extends JPanel {
 	
 	public void tick() {
 		
-		Enemy.enemySpeed += 0.001;
+		Enemy.enemySpeed += 0.002;
 		if (randGenerator.nextInt(100) < 10) {
 			generateEnemies();
 		}
@@ -96,11 +81,25 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	private void loadBackground() {
+		ImageIcon ii = new ImageIcon("res/background.png");
+		background = ii.getImage();
+		
+	}
+
+	private void characterSelection() {
+		Object[] options = {"Nakov", "Deyan", "Angel"};
+		
+		choice = JOptionPane.showOptionDialog(null,
+				"Choose your character", "Character selection", JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+	}
+
 	public void generateEnemies() {
 		Enemy tempEnemy;
 		
 		do {
-			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(50), 
+			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(300), 
 					190 + randGenerator.nextInt(GameFrame.HEIGHT - 170
 							- player.characterImage.getHeight(null)));
 			

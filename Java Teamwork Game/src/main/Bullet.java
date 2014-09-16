@@ -11,8 +11,7 @@ public class Bullet {
 
 	private int x;
 	private int y;
-	private int size = 10;
-	private int speed = 11;
+	private int speed = 13;
 	static Image ammoImage;
 	
 	public Bullet(int x, int y){
@@ -40,6 +39,10 @@ public class Bullet {
 		ImageIcon ii = new ImageIcon("res/bullet.png");
 		ammoImage = ii.getImage();
 		
+	}
+
+	public int getx() {
+		return this.x;
 	}
 	
 	
