@@ -84,7 +84,7 @@ public class GamePanel extends JPanel {
 			enemy.paint(g);
 		}
 		player.paint(g);
-		drawScore(g);
+		drawStatistics(g);
 		
 	}
 	
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel {
 	private void checkEnemyOutOfBounds() {
 		for (int index = 0; index < enemies.size(); index++) {
 			if (enemies.get(index).getX() < 0) {
-				if (player.lives < 1) {
+				if (player.lives == 1) {
 					JOptionPane.showMessageDialog(this, "Your score is " + score,
 						"Game Over", JOptionPane.YES_NO_OPTION);
 				overwriteHighscore();
@@ -150,12 +150,13 @@ public class GamePanel extends JPanel {
 		return false;
 	}
 	
-	public void drawScore(Graphics g){
+	public void drawStatistics(Graphics g){
 		
 		g.setColor(Color.RED);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 30)); 
 		g.drawString("Score" + " " + score, 10, 40);
 		g.drawString("Highscore: " + highscore, GameFrame.WIDTH - 250, 40);
+		g.drawString("Lives: " + player.lives, 10, 150);
 	}
 	
 	private void readHighScore() {
