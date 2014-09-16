@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
-public class Missile {
+public class Ammo {
 
 	private int x;
 	private int y;
 	private int size = 10;
 	private int speed = 11;
 	
-	public Missile(int x, int y){
+	public Ammo(int x, int y){
 		this.x = x;
 		this.y = y;
 	}

@@ -1,8 +1,11 @@
 package main;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 
 public class Player {
@@ -12,14 +15,16 @@ public class Player {
 	int velX = 0;
 	int velY = 0;
 	int speed = 10;
+	static Image characterImage;
 	
-	static ArrayList<Missile> ammo;
+	static ArrayList<Ammo> ammo;
 	
 	public Player() {
 		x = 15;
 		y = 250;
 		size = 20;	
 		ammo = new ArrayList<>();
+		loadCharacterImage();
 	}
 	
 	public void tick() {
@@ -34,7 +39,7 @@ public class Player {
 		checkOutOfBounds();
 	}
 	
-	private void checkMissileCollision(Missile missile) {
+	private void checkMissileCollision(Ammo missile) {
 		for (int index = 0; index < GamePanel.enemies.size(); index++) {
 			if (GamePanel.enemies.get(index).getBounds().intersects(missile.getBounds())) {
 				GamePanel.enemies.remove(GamePanel.enemies.get(index));
@@ -61,9 +66,9 @@ public class Player {
 
 	public void paint(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(x, y, size, size);
+		g.drawImage(characterImage, x, y, null);
 		
-		for (Missile missile : ammo) {
+		for (Ammo missile : ammo) {
 			missile.paint(g);
 		}
 	}
@@ -81,27 +86,42 @@ public class Player {
 		} else if(key == KeyEvent.VK_D){
 			velX = speed;
 		} else if (key == KeyEvent.VK_SPACE) {
-			ammo.add(new Missile(x + size, y + size / 3));
+			ammo.add(new Ammo(x + size, y + size / 3));
 		}
 	}
-		public void keyReleased(KeyEvent e){
+	
+	public void keyReleased(KeyEvent e){
 			
-			int key = e.getKeyCode();
-			
-			if (key == KeyEvent.VK_W) {
-				velY = 0;
-			}
-			else if (key == KeyEvent.VK_S){
-				velY = 0;
-			}
-			else if (key == KeyEvent.VK_A){
-				velX = 0;
-			}
-			else if(key == KeyEvent.VK_D){
-				velX = 0;
-			}
+		int key = e.getKeyCode();
 		
-	   }
+		if (key == KeyEvent.VK_W) {
+			velY = 0;
+		}
+		else if (key == KeyEvent.VK_S){
+			velY = 0;
+		}
+		else if (key == KeyEvent.VK_A){
+			velX = 0;
+		}
+		else if(key == KeyEvent.VK_D){
+			velX = 0;
+		}
+		
+   }
+		
+	private void loadCharacterImage() {
+		ImageIcon ii;
+		
+		if (GamePanel.choice == 0) {
+			ii = new ImageIcon("res/nakov.png");
+		} else if (GamePanel.choice == 1) {
+			ii = new ImageIcon("res/Deqn.png");
+		} else {
+			ii = new ImageIcon("res/angel.png");
+		}
+		
+	    characterImage = ii.getImage();
+	}
 	
 	
 }
