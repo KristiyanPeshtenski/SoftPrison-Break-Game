@@ -20,8 +20,6 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
-
-	static int x = 10;
 	
 	static Random randGenerator;
 	static Player player;
@@ -36,7 +34,6 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel() {
 		
-		// for future character selection
 		characterSelection();
 		
 		player = new Player();
@@ -82,8 +79,8 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void tick() {
-		x += 5;					//????
 		
+		Enemy.enemySpeed += 0.001;
 		if (randGenerator.nextInt(100) < 10) {
 			generateEnemies();
 		}
@@ -103,8 +100,8 @@ public class GamePanel extends JPanel {
 		Enemy tempEnemy;
 		
 		do {
-			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(200), 
-					190 + randGenerator.nextInt(GameFrame.HEIGHT - 190
+			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(50), 
+					190 + randGenerator.nextInt(GameFrame.HEIGHT - 170
 							- player.characterImage.getHeight(null)));
 			
 		} while (avoidIntersection(tempEnemy));
@@ -181,7 +178,6 @@ public class GamePanel extends JPanel {
 		try {
 			out = new PrintWriter("res/highscore.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

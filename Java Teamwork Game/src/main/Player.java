@@ -13,6 +13,7 @@ public class Player {
 	static int y;
 	int velX = 0;
 	int velY = 0;
+	int shootDelay = 0;
 	
 	public int lives;
 	int speed = 10;
@@ -32,6 +33,10 @@ public class Player {
 	public void tick() {
 		x += velX;
 		y += velY;
+		
+		if (shootDelay > 0) {
+			shootDelay -= 1;
+		}
 		
 		for (int index = 0; index < ammo.size(); index++) {
 			ammo.get(index).tick();
@@ -88,7 +93,7 @@ public class Player {
 			velX = -speed;
 		} else if(key == KeyEvent.VK_D){
 			velX = speed;
-		} else if (key == KeyEvent.VK_SPACE) {
+		} else if (key == KeyEvent.VK_SPACE && shootDelay == 0) {
 			if (GamePanel.choice != 1) {
 				ammo.add(new Bullet(x + characterImage.getWidth(null), y
 					+ characterImage.getHeight(null) / 2));
@@ -96,6 +101,8 @@ public class Player {
 				ammo.add(new Bullet(x + characterImage.getWidth(null), y
 						+ characterImage.getHeight(null) / 5 - 5));
 			}
+			
+			shootDelay = 4;
 			
 		}
 	}

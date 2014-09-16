@@ -11,7 +11,7 @@ public class Enemy {
 	private int x;
 	private int y;
 	private static int size = 30;
-	private int fallingSpeed = 2;
+	static double enemySpeed = 6;
 	static Image enemyImage;
 	
 	public Enemy(int x, int y) {
@@ -22,7 +22,7 @@ public class Enemy {
 	}
 	
 	public void tick() {
-		x -= fallingSpeed;
+		x -= (int)enemySpeed;
 	}
 	
 	public void paint(Graphics g) {
