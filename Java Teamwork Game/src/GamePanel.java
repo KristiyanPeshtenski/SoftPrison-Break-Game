@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -14,8 +15,9 @@ public class GamePanel extends JPanel {
 	
 	static Random randGenerator;
 	static Player player;
+	public static int score;
+	static HighscoreManager highscore;
 	public static ArrayList<Enemy> enemies;
-	
 	public GamePanel() {
 		
 		// for future character selection
@@ -37,7 +39,8 @@ public class GamePanel extends JPanel {
 		//loadImage();
 		KeyListener input = new InputHandler();
 		addKeyListener(input);
-		
+		HighscoreManager hm = new HighscoreManager();
+		score = 0;
 		randGenerator = new Random();
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
 		setFocusable(true);
@@ -50,11 +53,12 @@ public class GamePanel extends JPanel {
 			enemy.paint(g);
 		}
 		player.paint(g);
+		drawScore(g);
 		
 	}
 	
 	public void tick() {
-		x += 5;
+		x += 5;					//????
 		
 		if (randGenerator.nextInt(100) < 10) {
 			generateEnemies();
@@ -89,7 +93,7 @@ public class GamePanel extends JPanel {
 	private void checkEnemyOutOfBounds() {
 		for (int index = 0; index < enemies.size(); index++) {
 			if (enemies.get(index).getX() < 0) {
-				JOptionPane.showMessageDialog(this, "Your score",
+				JOptionPane.showMessageDialog(this, "Your score is " + score,
 						"Game Over", JOptionPane.YES_NO_OPTION);
 				System.exit(0);
 			}
@@ -104,6 +108,18 @@ public class GamePanel extends JPanel {
 			}
 		}
 		return false;
+	}
+	
+	public void drawScore(Graphics g){
+		
+		g.setColor(Color.black);
+		g.drawString("Score" + " " + score, 20, 20);
+	}
+	
+	public static void changeSpeed(){
+		if (score % 10 == 0) {
+			GameFrame.ThreadSpeed -= 20;			//diga speeda na 70 to4ki i posle raboti korektno 
+		}
 	}
 	
 	/*private static void loadImage() {
