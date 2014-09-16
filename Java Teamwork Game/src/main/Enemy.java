@@ -31,7 +31,7 @@ public class Enemy {
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(this.x, this.y, size, size);
+		return new Rectangle(this.x, this.y, enemyImage.getWidth(null), enemyImage.getHeight(null));
 	}
 	
 	public static int getSize() {

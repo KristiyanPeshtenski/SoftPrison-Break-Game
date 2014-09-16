@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 
-public class Ammo {
+public class Bullet {
 
 	private int x;
 	private int y;
@@ -15,7 +15,7 @@ public class Ammo {
 	private int speed = 11;
 	static Image ammoImage;
 	
-	public Ammo(int x, int y){
+	public Bullet(int x, int y){
 		this.x = x;
 		this.y = y;
 		
@@ -32,7 +32,7 @@ public class Ammo {
 	} 
 	
 	public Rectangle getBounds(){
-		return new Rectangle (this.x,this.y,this.size,this.size);
+		return new Rectangle (this.x,this.y, ammoImage.getWidth(null), ammoImage.getHeight(null));
 	}
 	
 	private void ammoImage(){

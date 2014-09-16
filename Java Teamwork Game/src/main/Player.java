@@ -18,7 +18,7 @@ public class Player {
 	int speed = 10;
 	Image characterImage;
 	
-	static ArrayList<Ammo> ammo;
+	static ArrayList<Bullet> ammo;
 	
 	public Player() {
 		x = 15;
@@ -35,17 +35,17 @@ public class Player {
 		
 		for (int index = 0; index < ammo.size(); index++) {
 			ammo.get(index).tick();
-			checkMissileCollision(ammo.get(index));
+			checkbulletCollision(ammo.get(index));
 		}
 		
 		checkOutOfBounds();
 	}
 	
-	private void checkMissileCollision(Ammo missile) {
+	private void checkbulletCollision(Bullet bullet) {
 		for (int index = 0; index < GamePanel.enemies.size(); index++) {
-			if (GamePanel.enemies.get(index).getBounds().intersects(missile.getBounds())) {
+			if (GamePanel.enemies.get(index).getBounds().intersects(bullet.getBounds())) {
 				GamePanel.enemies.remove(GamePanel.enemies.get(index));
-				ammo.remove(missile);
+				ammo.remove(bullet);
 				GamePanel.score += 10;
 			}
 		}
@@ -90,10 +90,10 @@ public class Player {
 			velX = speed;
 		} else if (key == KeyEvent.VK_SPACE) {
 			if (GamePanel.choice != 1) {
-				ammo.add(new Ammo(x + characterImage.getWidth(null), y
+				ammo.add(new Bullet(x + characterImage.getWidth(null), y
 					+ characterImage.getHeight(null) / 2));
 			} else {
-				ammo.add(new Ammo(x + characterImage.getWidth(null), y
+				ammo.add(new Bullet(x + characterImage.getWidth(null), y
 						+ characterImage.getHeight(null) / 5 - 5));
 			}
 			

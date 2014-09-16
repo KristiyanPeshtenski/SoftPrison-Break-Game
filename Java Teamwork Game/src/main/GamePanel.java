@@ -80,8 +80,8 @@ public class GamePanel extends JPanel {
 		
 		g.drawImage(background, 0, 0, null);
 		
-		for (Enemy enemy : enemies) {
-			enemy.paint(g);
+		for (int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).paint(g);
 		}
 		player.paint(g);
 		drawStatistics(g);
@@ -97,8 +97,8 @@ public class GamePanel extends JPanel {
 		
 		player.tick();
 		
-		for (Enemy enemy : enemies) {
-			enemy.tick();
+		for (int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
 		}
 		
 		if (highscore < score) {
@@ -110,7 +110,7 @@ public class GamePanel extends JPanel {
 		Enemy tempEnemy;
 		
 		do {
-			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(150), 
+			tempEnemy = new Enemy(GameFrame.WIDTH + randGenerator.nextInt(200), 
 					190 + randGenerator.nextInt(GameFrame.HEIGHT - 190
 							- player.characterImage.getHeight(null)));
 			
