@@ -66,13 +66,6 @@ public class GamePanel extends JPanel {
 		choice = JOptionPane.showOptionDialog(null,
 				"Choose your character", "Character selection", JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-		if (choice == 0) {
-			System.out.println("Nakov is selected");
-		} else if (choice == 1) {
-			System.out.println("Deyan is selected");
-		} else {
-			System.out.println("Angel is selected");
-		}
 	}
 	
 	public void paint(Graphics g) {
@@ -126,10 +119,7 @@ public class GamePanel extends JPanel {
 		for (int index = 0; index < enemies.size(); index++) {
 			if (enemies.get(index).getX() < 0) {
 				if (player.lives == 1) {
-					JOptionPane.showMessageDialog(this, "Your score is " + score,
-						"Game Over", JOptionPane.YES_NO_OPTION);
-				overwriteHighscore();
-				System.exit(0);
+					gameOver();
 				
 				} else {
 					enemies.remove(index);
@@ -139,6 +129,13 @@ public class GamePanel extends JPanel {
 			}
 		}
 		
+	}
+
+	private void gameOver() {
+		JOptionPane.showMessageDialog(this, "Your score is " + score,
+			"Game Over", JOptionPane.YES_NO_OPTION);
+		overwriteHighscore();
+		System.exit(0);
 	}
 
 	private boolean avoidIntersection(Enemy tempEnemy) {
