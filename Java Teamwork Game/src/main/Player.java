@@ -11,18 +11,20 @@ import javax.swing.ImageIcon;
 public class Player {
 	static int x;
 	static int y;
-	static int size;
 	int velX = 0;
 	int velY = 0;
+	
+	public int lives;
 	int speed = 10;
-	static Image characterImage;
+	Image characterImage;
 	
 	static ArrayList<Ammo> ammo;
 	
 	public Player() {
 		x = 15;
 		y = 250;
-		size = 20;	
+		
+		lives = 5;
 		ammo = new ArrayList<>();
 		loadCharacterImage();
 	}
@@ -44,6 +46,7 @@ public class Player {
 			if (GamePanel.enemies.get(index).getBounds().intersects(missile.getBounds())) {
 				GamePanel.enemies.remove(GamePanel.enemies.get(index));
 				ammo.remove(missile);
+				GamePanel.score += 10;
 			}
 		}
 		
@@ -53,14 +56,14 @@ public class Player {
 		if (x <= 0) {			
 			x = 0;			
 		}
-		if (y <= 0) {			
-			y = 0; 
+		if (y <= 170) {			
+			y = 170; 
 		}
-		if (x >= GameFrame.WIDTH - size - 15) {
-			x = GameFrame.WIDTH - size - 15;
+		if (x >= GameFrame.WIDTH - characterImage.getWidth(null)) {
+			x = GameFrame.WIDTH - characterImage.getWidth(null);
 		}
-		if (y >= GameFrame.HEIGHT - size - 30) {
-			y = GameFrame.HEIGHT - size - 30;
+		if (y >= GameFrame.HEIGHT - characterImage.getHeight(null)) {
+			y = GameFrame.HEIGHT - characterImage.getHeight(null);
 		}
 	}
 
@@ -68,8 +71,8 @@ public class Player {
 		g.setColor(Color.RED);
 		g.drawImage(characterImage, x, y, null);
 		
-		for (Ammo missile : ammo) {
-			missile.paint(g);
+		for (int i = 0; i < ammo.size(); i++) {
+			ammo.get(i).paint(g);
 		}
 	}
 	
@@ -86,7 +89,14 @@ public class Player {
 		} else if(key == KeyEvent.VK_D){
 			velX = speed;
 		} else if (key == KeyEvent.VK_SPACE) {
-			ammo.add(new Ammo(x + size, y + size / 3));
+			if (GamePanel.choice != 1) {
+				ammo.add(new Ammo(x + characterImage.getWidth(null), y
+					+ characterImage.getHeight(null) / 2));
+			} else {
+				ammo.add(new Ammo(x + characterImage.getWidth(null), y
+						+ characterImage.getHeight(null) / 5 - 5));
+			}
+			
 		}
 	}
 	
