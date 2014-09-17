@@ -216,7 +216,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void loadBackground() {
-		ImageIcon ii = new ImageIcon("res/background.png");
+		ImageIcon ii = new ImageIcon("res/Images/background.png");
 		background = ii.getImage();
 		
 	}

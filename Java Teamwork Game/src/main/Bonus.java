@@ -56,11 +56,11 @@ public class Bonus {
 		ImageIcon ii;
 		
 		if (bonusType <= 10) {
-			ii = new ImageIcon("res/heart.png");
+			ii = new ImageIcon("res/Images/heart.png");
 		} else if (bonusType <= 80) {
-			ii = new ImageIcon("res/money.png");
+			ii = new ImageIcon("res/Images/money.png");
 		} else {
-			ii = new ImageIcon("res/slow.png");
+			ii = new ImageIcon("res/Images/slow.png");
 		}
 		
 		bonusImage = ii.getImage();

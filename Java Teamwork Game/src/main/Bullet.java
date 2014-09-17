@@ -36,7 +36,7 @@ public class Bullet {
 	
 	private void ammoImage(){
 		
-		ImageIcon ii = new ImageIcon("res/bullet.png");
+		ImageIcon ii = new ImageIcon("res/Images/bullet.png");
 		ammoImage = ii.getImage();
 		
 	}

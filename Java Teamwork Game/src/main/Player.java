@@ -151,11 +151,11 @@ public class Player {
 		ImageIcon ii;
 		
 		if (GamePanel.choice == 0) {
-			ii = new ImageIcon("res/nakov.png");
+			ii = new ImageIcon("res/Images/nakov.png");
 		} else if (GamePanel.choice == 1) {
-			ii = new ImageIcon("res/deyan.png");
+			ii = new ImageIcon("res/Images/deyan.png");
 		} else {
-			ii = new ImageIcon("res/angel.png");
+			ii = new ImageIcon("res/Images/angel.png");
 		}
 		
 	    characterImage = ii.getImage();

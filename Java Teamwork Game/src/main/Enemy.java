@@ -44,7 +44,7 @@ public class Enemy {
 	
 	private void enemyImage(){
 		
-		ImageIcon ii = new ImageIcon("res/enemy.png");
+		ImageIcon ii = new ImageIcon("res/Images/enemy.png");
 		enemyImage = ii.getImage();
 		
 	}
