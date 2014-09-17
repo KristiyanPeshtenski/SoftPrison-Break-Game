@@ -22,7 +22,7 @@ public class Player {
 	int speed = 15;
 	Image characterImage;
 	
-	static ArrayList<Bullet> ammo;
+	Ammunition ammo;
 	public static ArrayList<Bonus> bonuses;
 	
 	public Player() {
@@ -31,7 +31,8 @@ public class Player {
 		
 		lives = 5;
 		randGenerator = new Random();
-		ammo = new ArrayList<>();
+		
+		ammo = new Ammunition();
 		bonuses = new ArrayList<>();
 		loadCharacterImage();
 	}
@@ -40,16 +41,10 @@ public class Player {
 		x += velX;
 		y += velY;
 		
+		ammo.tick();
+		
 		if (shootDelay > 0) {
 			shootDelay -= 1;
-		}
-		
-		for (int index = 0; index < ammo.size(); index++) {
-			checkBulletOutOfBounds(index);
-		}
-		
-		for (int index = 0; index < ammo.size(); index++) {
-			checkBulletCollision(ammo.get(index));
 		}
 		
 		for (int i = 0; i < bonuses.size(); i++) {
@@ -63,10 +58,6 @@ public class Player {
 	public void paint(Graphics g) {
 		g.setColor(Color.RED);
 		g.drawImage(characterImage, x, y, null);
-		
-		for (int i = 0; i < ammo.size(); i++) {
-			ammo.get(i).paint(g);
-		}
 		
 		for (int i = 0; i < bonuses.size(); i++) {
 			bonuses.get(i).paint(g);
@@ -82,27 +73,7 @@ public class Player {
 		}
 	}
 
-	private void checkBulletOutOfBounds(int index) {
-		ammo.get(index).tick();
-		if (ammo.get(index).getX() + 10 > GameFrame.WIDTH) {
-			ammo.remove(index);
-		}
-	}
-	
-	private void checkBulletCollision(Bullet bullet) {
-		for (int index = 0; index < GamePanel.enemies.size(); index++) {
-			if (GamePanel.enemies.get(index).getBounds().intersects(bullet.getBounds())) {
-				GamePanel.enemies.remove(GamePanel.enemies.get(index));
-				
-				bonusChance(bullet.getX(), bullet.getY());
-				ammo.remove(bullet);
-				GamePanel.score += 10;
-			}
-		}
-		
-	}
-
-	private void bonusChance(int x, int y) {
+	public void bonusChance(int x, int y) {
 		int chance = randGenerator.nextInt(100);
 		if (chance <= 5) {
 			bonuses.add(new Bonus(x, y));
@@ -136,15 +107,22 @@ public class Player {
 			velX = -speed;
 		} else if(key == KeyEvent.VK_D){
 			velX = speed;
-		} else if (key == KeyEvent.VK_SPACE && shootDelay == 0) {
+		} else if (key == KeyEvent.VK_R) {
+			if (ammo.reloadDelay <= 0) {
+				ammo.reload();
+			}
+			
+		} else if (key == KeyEvent.VK_SPACE && shootDelay == 0
+				&& ammo.getClip() > 0 && !ammo.reloading) {
 			if (GamePanel.choice != 1) {
-				ammo.add(new Bullet(x + characterImage.getWidth(null), y
+				GamePanel.bullets.add(new Bullet(x + characterImage.getWidth(null), y
 					+ characterImage.getHeight(null) / 2));
 			} else {
-				ammo.add(new Bullet(x + characterImage.getWidth(null), y
+				GamePanel.bullets.add(new Bullet(x + characterImage.getWidth(null), y
 						+ characterImage.getHeight(null) / 5 - 5));
 			}
 			
+			ammo.setClip(ammo.getClip() - 1);
 			shootDelay = 4;
 			
 		}
