@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -94,6 +95,7 @@ public class GamePanel extends JPanel {
 		if (highscore < score) {
 			highscore = score;
 		}
+		checkCollision();
 	}
 	
 	private void checkBulletOutOfBounds(int index) {
@@ -137,18 +139,43 @@ public class GamePanel extends JPanel {
 			if (enemies.get(index).getX() < 0) {
 				if (player.lives == 1) {
 					gameOver();
-				
+
 				} else {
 					enemies.remove(index);
 					player.lives--;
 				}
-				
+
 			}
 		}
-		
+
 	}
 	
-	private boolean avoidEnemyIntersection(Enemy tempEnemy) {
+	private void checkCollision() {
+		if (Player.isEnemyCollision == true) {
+			for (int index = 0; index < enemies.size(); index++) {
+				if (enemies.get(index).getX() < 0) {
+					if (player.lives == 1) {
+						gameOver();
+
+					} else {
+						enemies.remove(index);
+						player.lives--;
+					}
+
+				}
+			}
+		}
+
+	}
+
+	private void gameOver() {
+		JOptionPane.showMessageDialog(this, "Your score is " + score,
+				"Game Over", JOptionPane.YES_NO_OPTION);
+		overwriteHighscore();
+		System.exit(0);
+	}
+
+	private boolean avoidIntersection(Enemy tempEnemy) {
 		for (Enemy enemy : enemies) {
 			if (enemy.getBounds().intersects(tempEnemy.getBounds())) {
 				return true;
