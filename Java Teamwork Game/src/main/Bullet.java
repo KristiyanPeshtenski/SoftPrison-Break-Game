@@ -11,7 +11,7 @@ public class Bullet {
 
 	private int x;
 	private int y;
-	private int speed = 13;
+	private int speed = 16;
 	static Image ammoImage;
 	
 	public Bullet(int x, int y){

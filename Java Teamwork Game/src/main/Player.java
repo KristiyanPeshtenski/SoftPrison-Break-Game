@@ -11,15 +11,15 @@ import javax.swing.ImageIcon;
 
 
 public class Player {
-	static int x;
-	static int y;
+	int x;
+	int y;
 	int velX = 0;
 	int velY = 0;
 	int shootDelay = 0;
 	Random randGenerator;
 	
 	public int lives;
-	int speed = 12;
+	int speed = 15;
 	Image characterImage;
 	
 	static ArrayList<Bullet> ammo;
@@ -84,7 +84,7 @@ public class Player {
 
 	private void checkBulletOutOfBounds(int index) {
 		ammo.get(index).tick();
-		if (ammo.get(index).getX() > GameFrame.WIDTH) {
+		if (ammo.get(index).getX() + 10 > GameFrame.WIDTH) {
 			ammo.remove(index);
 		}
 	}

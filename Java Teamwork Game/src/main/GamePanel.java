@@ -65,7 +65,7 @@ public class GamePanel extends JPanel {
 	
 	public void tick() {
 		
-		Enemy.enemySpeed += 0.002;
+		Enemy.enemySpeed += 0.001;
 		if (randGenerator.nextInt(100) < 10) {
 			generateEnemies();
 		}
