@@ -46,7 +46,7 @@ public class Bonus {
 		if (bonusType <= 10) {
 			GamePanel.player.lives++;
 		} else if (bonusType <= 80) {
-			GamePanel.score += 100;
+			GamePanel.statistics.score += 100;
 		} else {
 			Enemy.enemySpeed -= 1;
 		}

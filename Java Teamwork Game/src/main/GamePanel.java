@@ -1,16 +1,8 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.KeyListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,8 +17,7 @@ public class GamePanel extends JPanel {
 	static Random randGenerator;
 	static Player player;
 	
-	public static int score;
-	static int highscore;
+	public static Statistics statistics;
 	
 	static Image background;
 	
@@ -35,7 +26,7 @@ public class GamePanel extends JPanel {
 	public static int choice;
 	
 	public GamePanel() {
-		readHighScore();
+		statistics = new Statistics();
 		loadBackground();
 		characterSelection();
 		
@@ -45,8 +36,6 @@ public class GamePanel extends JPanel {
 		
 		KeyListener input = new InputHandler();
 		addKeyListener(input);
-		
-		score = 0;
 		
 		randGenerator = new Random();
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
@@ -67,7 +56,7 @@ public class GamePanel extends JPanel {
 		}
 		
 		player.paint(g);
-		drawStatistics(g);
+		statistics.paint(g);
 		
 	}
 	
@@ -78,6 +67,7 @@ public class GamePanel extends JPanel {
 			generateEnemies();
 		}
 		
+		statistics.tick();
 		player.tick();
 		
 		for (int index = 0; index < bullets.size(); index++) {
@@ -91,11 +81,6 @@ public class GamePanel extends JPanel {
 		for (int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 		}
-		
-		if (highscore < score) {
-			highscore = score;
-		}
-		checkCollision();
 	}
 	
 	private void checkBulletOutOfBounds(int index) {
@@ -112,7 +97,7 @@ public class GamePanel extends JPanel {
 				
 				player.bonusChance(bullet.getX(), bullet.getY());
 				bullets.remove(bullet);
-				GamePanel.score += 10;
+				statistics.score += 10;
 			}
 		}
 		
@@ -139,43 +124,18 @@ public class GamePanel extends JPanel {
 			if (enemies.get(index).getX() < 0) {
 				if (player.lives == 1) {
 					gameOver();
-
+				
 				} else {
 					enemies.remove(index);
 					player.lives--;
 				}
-
+				
 			}
 		}
-
+		
 	}
 	
-	private void checkCollision() {
-		if (Player.isEnemyCollision == true) {
-			for (int index = 0; index < enemies.size(); index++) {
-				if (enemies.get(index).getX() < 0) {
-					if (player.lives == 1) {
-						gameOver();
-
-					} else {
-						enemies.remove(index);
-						player.lives--;
-					}
-
-				}
-			}
-		}
-
-	}
-
-	private void gameOver() {
-		JOptionPane.showMessageDialog(this, "Your score is " + score,
-				"Game Over", JOptionPane.YES_NO_OPTION);
-		overwriteHighscore();
-		System.exit(0);
-	}
-
-	private boolean avoidIntersection(Enemy tempEnemy) {
+	private boolean avoidEnemyIntersection(Enemy tempEnemy) {
 		for (Enemy enemy : enemies) {
 			if (enemy.getBounds().intersects(tempEnemy.getBounds())) {
 				return true;
@@ -193,53 +153,10 @@ public class GamePanel extends JPanel {
 	}
 
 	private void gameOver() {
-		JOptionPane.showMessageDialog(this, "Your score is " + score,
+		JOptionPane.showMessageDialog(this, "Your score is " + statistics.score,
 			"Game Over", JOptionPane.YES_NO_OPTION);
-		overwriteHighscore();
+		statistics.overwriteHighscore();
 		System.exit(0);
-	}
-	
-	public void drawStatistics(Graphics g){
-		
-		g.setColor(Color.RED);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 30)); 
-		g.drawString("Score" + " " + score, 10, 40);
-		g.drawString("Highscore: " + highscore, GameFrame.WIDTH - 250, 40);
-		g.drawString("Lives: " + player.lives, 10, 140);
-		g.drawString("Ammo: " + player.ammo.getClip(), GameFrame.WIDTH - 220 , 140);
-	}
-	
-	private void readHighScore() {
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader(
-					"res/highscore.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		String line = null;
-		
-		try {
-			while ((line = reader.readLine()) != null) {
-			    highscore = Integer.parseInt(line);
-			}
-		} catch (NumberFormatException | IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void overwriteHighscore() {
-		PrintWriter out = null;
-		try {
-			out = new PrintWriter("res/highscore.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		out.println(highscore);
-		out.close();
-		
 	}
 	
 	private void loadBackground() {

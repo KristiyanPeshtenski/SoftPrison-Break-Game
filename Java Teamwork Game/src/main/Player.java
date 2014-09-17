@@ -16,11 +16,7 @@ public class Player {
 	int velX = 0;
 	int velY = 0;
 	int shootDelay = 0;
-<<<<<<< .mine
-	public static boolean isEnemyCollision = false;
-=======
 	Random randGenerator;
->>>>>>> .r74
 	
 	public int lives;
 	int speed = 15;
@@ -84,18 +80,6 @@ public class Player {
 		}
 		
 	}
-	
-	public void checkEnemyCollision(Enemy enemy,Player player){
-		
-		for (int index = 0; index < GamePanel.enemies.size(); index++) {
-			if (GamePanel.enemies.get(index).getBounds().contains(player.getBounds())) {
-				GamePanel.enemies.remove(index);
-				isEnemyCollision = true;
-			}
-		}
-	}
-	
-	
 
 	private void checkOutOfBounds() {
 		if (x <= 0) {			
@@ -110,10 +94,6 @@ public class Player {
 		if (y >= GameFrame.HEIGHT - characterImage.getHeight(null)) {
 			y = GameFrame.HEIGHT - characterImage.getHeight(null);
 		}
-	}
-	
-	public Rectangle getBounds(){
-		return new Rectangle(this.x,this.y,characterImage.getHeight(null),characterImage.getWidth(null));
 	}
 	
 	public void keyPressed(KeyEvent e){
@@ -181,21 +161,10 @@ public class Player {
 	    characterImage = ii.getImage();
 	}
 	
-<<<<<<< .mine
-	public int getX(){
-		return x;
-	}
-=======
 	public Rectangle getBounds(){
 		return new Rectangle (this.x,this.y,
 				characterImage.getWidth(null), characterImage.getHeight(null));
 	}
->>>>>>> .r74
-	
-	public int getY(){
-		return y;
-	}
-	
 	
 }
 
