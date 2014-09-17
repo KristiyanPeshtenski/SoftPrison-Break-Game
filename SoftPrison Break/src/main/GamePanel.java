@@ -29,6 +29,7 @@ public class GamePanel extends JPanel {
 		Sound.START_GAME.play();
 		statistics = new Statistics();
 		loadBackground();
+		showInstructions();
 		characterSelection();
 		
 		player = new Player();
@@ -42,7 +43,7 @@ public class GamePanel extends JPanel {
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
 		setFocusable(true);
 	}
-	
+
 	public void paint(Graphics g) {
 		super.paint(g);
 		
@@ -160,6 +161,18 @@ public class GamePanel extends JPanel {
 		choice = JOptionPane.showOptionDialog(null,
 				"Choose your character", "Character selection", JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+	}
+	
+	private void showInstructions() {
+		
+		JOptionPane.showMessageDialog(this, "You are a warden of the famous SoftPrison.\n "
+				+ "Your duty is not to let the miserable prisoners escape.\n"
+				+ "Use all means necessary.\n"
+				+ "Be careful though, they will attack you if they get near.\n" + 
+		"\nW,A,S,D - Move character\n"
+				+ "R - Reload\n"
+				+ "Spacebar - Shoot", "Instructions", 
+				JOptionPane.PLAIN_MESSAGE);
 	}
 
 	private void gameOver() {
