@@ -41,8 +41,12 @@ public class Bullet {
 		
 	}
 
-	public int getx() {
+	public int getX() {
 		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
 	}
 	
 	
