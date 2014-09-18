@@ -50,10 +50,13 @@ public class Bonus {
 	// in case we collect the bonus, we get the corresponding extras
 	public void getBonus() {
 		if (bonusType <= 10) {
+			Sound.LIVES_BONUS.play();
 			GamePanel.player.lives++;
 		} else if (bonusType <= 80) {
+			Sound.SCORE_BONUS.play();
 			GamePanel.statistics.score += 100;
 		} else {
+			Sound.SLOW_BONUS.play(); 
 			Enemy.enemySpeed -= 0.7;
 		}
 	}

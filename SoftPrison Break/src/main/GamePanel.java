@@ -29,6 +29,7 @@ public class GamePanel extends JPanel {
 	public GamePanel() {
 		// we initialize the variables
 		Sound.START_GAME.play();
+		
 		// the Statistics class is responsible for the game statistics at the top of the screen
 		statistics = new Statistics();
 		
@@ -84,10 +85,10 @@ public class GamePanel extends JPanel {
 		/*the speed of the enemies increases constantly. 
 		We access the variable statically in order to apply the changes for every enemy*/
 		
-		Enemy.enemySpeed += 0.001;
+		Enemy.enemySpeed += 0.0015;
 		
 		// on each step of our game there is a chance to spawn a new enemy
-		if (randGenerator.nextInt(100) < 10) {
+		if (randGenerator.nextInt(100) < 10 && !statistics.loading) {
 			generateEnemies();
 		}
 		

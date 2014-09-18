@@ -19,5 +19,11 @@ public class Sound {
 			(Sound.class.getResource("/yay.wav"));
 	public static final AudioClip PLAYER_HIT = Applet.newAudioClip
 			(Sound.class.getResource("/playerHit.wav"));
+	public static final AudioClip LIVES_BONUS = Applet.newAudioClip
+			(Sound.class.getResource("/lives.wav"));
+	public static final AudioClip SLOW_BONUS = Applet.newAudioClip
+			(Sound.class.getResource("/slow.wav"));
+	public static final AudioClip SCORE_BONUS = Applet.newAudioClip
+			(Sound.class.getResource("/money.wav"));
 	
 }

@@ -4,12 +4,13 @@ public class Ammunition {
 
 	int clip;
 	int reloadDelay = 0;
+	private static final int CLIP_SIZE = 40;
 	boolean reloading = false;
 	
 	public Ammunition() {
 		
 		// the initial ammo is 50. It cannot get beyond this.
-		clip = 50;
+		clip = CLIP_SIZE;
 	}
 	
 	public void tick() {
@@ -20,7 +21,7 @@ public class Ammunition {
 		
 		// when we have reloaded, we get the clip to its initial value
 		if (reloadDelay <= 0 && reloading) {
-			clip = 50;
+			clip = CLIP_SIZE;
 			reloading = false;
 		}
 	}

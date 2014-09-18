@@ -14,10 +14,12 @@ public class Statistics {
 
 	public int score;
 	static int highscore;
+	public boolean loading = false;
 	
 	public Statistics() {
 		// we read the highscore from a text file
 		readHighScore();
+		loading = false;
 		score = 0;
 	}
 	
@@ -41,6 +43,7 @@ public class Statistics {
 	
 	// we read the highscore from a text file
 	private void readHighScore() {
+		loading = true;
 		
 		BufferedReader reader = null;
 		try {
