@@ -21,19 +21,23 @@ public class Bullet {
 		ammoImage();
 	}
 	
+	// logic
 	public void tick(){
 		x += speed;
 	}
 	
+	// visual part
 	public void paint (Graphics g){
 		g.setColor(Color.red);
 		g.drawImage(ammoImage, x, y, null);
 	} 
 	
+	// helps out the collision detector
 	public Rectangle getBounds(){
 		return new Rectangle (this.x,this.y, ammoImage.getWidth(null), ammoImage.getHeight(null));
 	}
 	
+	// the image
 	private void ammoImage(){
 		
 		ImageIcon ii = new ImageIcon("res/Images/bullet.png");
@@ -41,6 +45,7 @@ public class Bullet {
 		
 	}
 
+	// getters for x and y
 	public int getX() {
 		return this.x;
 	}

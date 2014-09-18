@@ -22,26 +22,32 @@ public class Bonus {
 		this.y = y;
 		
 		bonusType = randGenerator.nextInt(101);
+		// if we don't collect the bonus, it will disappear in time
 		bonusDuration = 90;
 		loadBonusImage();
 	}
 	
+	// visual part
 	public void paint(Graphics g) {
 		g.drawImage(bonusImage, x, y, null);
 	}
 	
+	// the logic
 	public void tick() {
 		bonusDuration--;
 		
+		// we remove the bonus if the duration is over
 		if (bonusDuration < 0) {
 			Player.bonuses.remove(this);
 		}
 	}
 	
+	// helps out the collision detector
 	public Rectangle getBounds(){
 		return new Rectangle (this.x,this.y, bonusImage.getWidth(null), bonusImage.getHeight(null));
 	}
 
+	// in case we collect the bonus, we get the corresponding extras
 	public void getBonus() {
 		if (bonusType <= 10) {
 			GamePanel.player.lives++;
@@ -52,6 +58,7 @@ public class Bonus {
 		}
 	}
 	
+	// according to the bonus type, we load a different image
 	public void loadBonusImage() {
 		ImageIcon ii;
 		

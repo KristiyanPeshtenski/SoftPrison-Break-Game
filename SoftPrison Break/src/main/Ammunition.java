@@ -8,25 +8,30 @@ public class Ammunition {
 	
 	public Ammunition() {
 		
+		// the initial ammo is 50. It cannot get beyond this.
 		clip = 50;
 	}
 	
 	public void tick() {
+		// while we are reloading, we cannot shoot.
 		if (reloadDelay > 0) {
 			reloadDelay--;
 		}
 		
+		// when we have reloaded, we get the clip to its initial value
 		if (reloadDelay <= 0 && reloading) {
 			clip = 50;
 			reloading = false;
 		}
 	}
 	
+	// in case we click R
 	public void reload() {
 		reloadDelay = 20;
 		reloading = true;
 	}
 
+	// getters and setters for the clip
 	public int getClip() {
 		return clip;
 	}

@@ -5,9 +5,9 @@ import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener {
 
+	// we invoke the player's key pressed and released methods
 	@Override
 	public void keyPressed(KeyEvent key) {
-		// TODO Auto-generated method stub
 
 		GamePanel.player.keyPressed(key);
 		
@@ -15,14 +15,12 @@ public class InputHandler implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent key) {
-		// TODO Auto-generated method stub
 
 		GamePanel.player.keyReleased(key);
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

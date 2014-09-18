@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 	
+	// initial variables, we declare them here in order to use them in every method of the class
 	static Random randGenerator;
 	static Player player;
 	
@@ -26,8 +27,13 @@ public class GamePanel extends JPanel {
 	public static int choice;
 	
 	public GamePanel() {
+		// we initialize the variables
 		Sound.START_GAME.play();
+		// the Statistics class is responsible for the game statistics at the top of the screen
 		statistics = new Statistics();
+		
+		/*here, we load the background, show the statistics
+		at the start of the game and the character selection screen*/
 		loadBackground();
 		showInstructions();
 		characterSelection();
@@ -36,18 +42,27 @@ public class GamePanel extends JPanel {
 		enemies = new ArrayList<>();
 		bullets = new ArrayList<>();
 		
+		// we create the input handler
 		KeyListener input = new InputHandler();
 		addKeyListener(input);
 		
 		randGenerator = new Random();
+		
+		// we set the size of the panel according to the frame size and we make the panel focusable
 		setSize(GameFrame.WIDTH, GameFrame.HEIGHT);
 		setFocusable(true);
 	}
 
+	// this method is responsible for the visual part of our game
 	public void paint(Graphics g) {
+		// here, we clear the old elements of the screen
 		super.paint(g);
 		
+		// the background for the game
 		g.drawImage(background, 0, 0, null);
+		
+		/*for every bullet and enemy on the screen
+		we invoke the paint method in the corresponding classes*/
 		
 		for (int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).paint(g);
@@ -57,39 +72,52 @@ public class GamePanel extends JPanel {
 			bullets.get(i).paint(g);
 		}
 		
+		// the paint methods for the player and the statistics accordingly
 		player.paint(g);
 		statistics.paint(g);
 		
 	}
 	
+	// updates the logic of our  game
 	public void tick() {
 		
+		/*the speed of the enemies increases constantly. 
+		We access the variable statically in order to apply the changes for every enemy*/
+		
 		Enemy.enemySpeed += 0.001;
+		
+		// on each step of our game there is a chance to spawn a new enemy
 		if (randGenerator.nextInt(100) < 10) {
 			generateEnemies();
 		}
 		
+		// the corresponding tick methods for the different components
 		statistics.tick();
 		player.tick();
 		
+		// if the bullet is out of bounds, we remove it
 		for (int index = 0; index < bullets.size(); index++) {
 			checkBulletOutOfBounds(index);
 		}
 		
+		// if we hit an enemy, he dies... tragically.
 		for (int index = 0; index < bullets.size(); index++) {
 			checkEnemyKilled(bullets.get(index));
 		}
 		
+		// if the enemy gets near the player, we get punched in the face.
 		for (int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 			checkPlayerEnemiesCollision(enemies.get(i));
 		}
 		
+		// this is obvious, isn't it?
 		if (player.lives <= 0) {
 			gameOver();
 		}
 	}
 
+	// in case the bullet gets off the screen, we remove it
 	private void checkBulletOutOfBounds(int index) {
 		bullets.get(index).tick();
 		if (bullets.get(index).getX() + 10 > GameFrame.WIDTH) {
@@ -97,6 +125,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
+	// any enemies killed ?
 	private void checkEnemyKilled(Bullet bullet) {
 		for (int index = 0; index < GamePanel.enemies.size(); index++) {
 			if (GamePanel.enemies.get(index).getBounds().intersects(bullet.getBounds())) {
@@ -110,6 +139,7 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	// we get punched in the face.
 	private void checkPlayerEnemiesCollision(Enemy enemy) {
 		if (enemy.getBounds().intersects(player.getBounds())) {
 			Sound.PLAYER_HIT.play();
@@ -119,6 +149,7 @@ public class GamePanel extends JPanel {
 		
 	}
 
+	// the algorithm for generating enemies. Note that they cannot spawn upon each other
 	public void generateEnemies() {
 		Enemy tempEnemy;
 		
@@ -135,6 +166,7 @@ public class GamePanel extends JPanel {
 		
 	}
 
+	// Attention! Enemies escaped!
 	private void checkEnemyOutOfBounds() {
 		for (int index = 0; index < enemies.size(); index++) {
 			if (enemies.get(index).getX() < 0) {
@@ -146,6 +178,7 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	// the method for avoiding the enemy to enemy collision
 	private boolean avoidEnemyIntersection(Enemy tempEnemy) {
 		for (Enemy enemy : enemies) {
 			if (enemy.getBounds().intersects(tempEnemy.getBounds())) {
@@ -155,6 +188,7 @@ public class GamePanel extends JPanel {
 		return false;
 	}
 	
+	// the character selection at the start of the game
 	private void characterSelection() {
 		Object[] options = {"Nakov", "Deyan", "Angel"};
 		
@@ -163,6 +197,7 @@ public class GamePanel extends JPanel {
 						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 	}
 	
+	// the initial instructions
 	private void showInstructions() {
 		
 		JOptionPane.showMessageDialog(this, "You are a warden of the famous SoftPrison.\n "
@@ -175,6 +210,7 @@ public class GamePanel extends JPanel {
 				JOptionPane.PLAIN_MESSAGE);
 	}
 
+	// yeah... the tragic end
 	private void gameOver() {
 		Sound.GAME_OVER.play();
 		JOptionPane.showMessageDialog(this, "Your score is " + statistics.score,
@@ -183,6 +219,7 @@ public class GamePanel extends JPanel {
 		System.exit(0);
 	}
 	
+	// the image for the background
 	private void loadBackground() {
 		ImageIcon ii = new ImageIcon("res/Images/background.png");
 		background = ii.getImage();

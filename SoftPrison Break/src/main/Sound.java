@@ -4,6 +4,7 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 
 public class Sound {
+	// the audio clips for the game. Note that the folder with the sounds must be in the build path
 	public static final AudioClip START_GAME = Applet.newAudioClip
 			(Sound.class.getResource("/ThereIsARiot.wav"));
 	public static final AudioClip SHOOT = Applet.newAudioClip

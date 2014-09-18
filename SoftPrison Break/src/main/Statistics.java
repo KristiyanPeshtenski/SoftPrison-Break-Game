@@ -16,16 +16,19 @@ public class Statistics {
 	static int highscore;
 	
 	public Statistics() {
+		// we read the highscore from a text file
 		readHighScore();
 		score = 0;
 	}
 	
+	// in case we get a new highscore. WOOHOO!
 	public void tick() {
 		if (highscore < score) {
 			highscore = score;
 		}
 	}
 	
+	// we draw the statistics at the top of the screen.
 	public void paint(Graphics g) {
 		g.setColor(Color.RED);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 30)); 
@@ -36,6 +39,7 @@ public class Statistics {
 		
 	}
 	
+	// we read the highscore from a text file
 	private void readHighScore() {
 		
 		BufferedReader reader = null;
@@ -57,6 +61,7 @@ public class Statistics {
 		}
 	}
 	
+	// we overwrite the new highscore to the textfile.
 	public void overwriteHighscore() {
 		
 		PrintWriter out = null;
