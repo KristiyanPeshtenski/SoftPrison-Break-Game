@@ -134,7 +134,7 @@ public class GamePanel extends JPanel {
 				player.bonusChance(bullet.getX(), bullet.getY());
 				bullets.remove(bullet);
 				statistics.score += 10;
-				Sound.ENEMY_KILLED.play();
+				Sound.PLAYER_HIT.play();
 			}
 		}
 		
@@ -213,6 +213,8 @@ public class GamePanel extends JPanel {
 
 	// yeah... the tragic end
 	private void gameOver() {
+		Sound.ENEMY_ESCAPED.stop();
+		Sound.BACKGROUND.stop();
 		Sound.GAME_OVER.play();
 		JOptionPane.showMessageDialog(this, "Your score is " + statistics.score,
 			"Game Over", JOptionPane.YES_NO_OPTION);
