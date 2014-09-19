@@ -13,7 +13,7 @@
 
 6. Collision detector - Kristiyan / Done
 
-7.  Add score and adjust speed - Kristiyan
+7.  Add score and adjust speed - Kristiyan / Done
 
 8. Character Images and ammo- Veronika / Done
 
@@ -23,12 +23,14 @@
 
 11. Insert images and sound into the game - Preslav / Done
 
-12. Add Bonuses - Preslav
+12. Add Bonuses - Preslav / Done
 
-13. Resize enemy image - Veronika
+13. Resize enemy image - Veronika / Done
 
-14. Player - enemies Collision - Kristiyan
+14. Player - enemies Collision - Preslav / Done
 
-15. Add Sound - ?
+15. Add Sound - Preslav / Done
+
+Game is ready for deployment!
 
 NOTE: Please leave comments in order for everyone to understand what you are doing ^^
