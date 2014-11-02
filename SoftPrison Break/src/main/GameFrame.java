@@ -29,7 +29,6 @@ public class GameFrame extends JFrame{
 		this.add(game);
 		
 		this.setVisible(true);
-		Sound.BACKGROUND.loop();
 		// the main game loop
 		gameLoop();
 	}

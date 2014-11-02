@@ -7,8 +7,6 @@ public class Sound {
 	// the audio clips for the game. Note that the folder with the sounds must be in the build path
 	public static final AudioClip START_GAME = Applet.newAudioClip
 			(Sound.class.getResource("/ThereIsARiot.wav"));
-	public static final AudioClip BACKGROUND = Applet.newAudioClip
-			(Sound.class.getResource("/background.wav"));
 	public static final AudioClip SHOOT = Applet.newAudioClip
 			(Sound.class.getResource("/shoot.wav"));
 	public static final AudioClip RELOAD = Applet.newAudioClip

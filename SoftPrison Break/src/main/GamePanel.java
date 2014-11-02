@@ -207,14 +207,13 @@ public class GamePanel extends JPanel {
 				+ "Be careful though, they will attack you if they get near.\n" + 
 		"\nW,A,S,D - Move character\n"
 				+ "R - Reload\n"
-				+ "Spacebar - Shoot", "Instructions", 
+				+ "Enter - Shoot", "Instructions", 
 				JOptionPane.PLAIN_MESSAGE);
 	}
 
 	// yeah... the tragic end
 	private void gameOver() {
 		Sound.ENEMY_ESCAPED.stop();
-		Sound.BACKGROUND.stop();
 		Sound.GAME_OVER.play();
 		JOptionPane.showMessageDialog(this, "Your score is " + statistics.score,
 			"Game Over", JOptionPane.YES_NO_OPTION);

@@ -130,7 +130,7 @@ public class Player {
 				ammo.reload();
 			}
 			
-		} else if (key == KeyEvent.VK_SPACE && shootDelay == 0 // Space - shoot
+		} else if (key == KeyEvent.VK_ENTER && shootDelay == 0 // Space - shoot
 				&& ammo.getClip() > 0 && !ammo.reloading) {
 			Sound.SHOOT.play();
 			
